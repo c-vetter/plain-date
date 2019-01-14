@@ -1,0 +1,30 @@
+{
+  "name": "plain-date",
+  "description": "A simple, light-weight model for date handling",
+  "version": "0.0.1",
+  "author": "rasenplanscher",
+  "license": "MIT",
+
+  "main": "index.js",
+  "files": [],
+
+  "scripts": {
+  },
+
+  "dependencies": {
+  },
+
+
+  "homepage": "https://github.com/rasenplanscher/plain-date#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasenplanscher/plain-date.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rasenplanscher/plain-date/issues"
+  },
+  "keywords": [
+    "javascript",
+    "date"
+  ]
+}
