@@ -1,20 +1,17 @@
 {
   "name": "plain-date",
   "description": "A simple, light-weight model for date handling",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "rasenplanscher",
   "license": "MIT",
-
   "main": "index.js",
   "files": [],
-
   "scripts": {
+    "test": "ava"
   },
-
-  "dependencies": {
+  "devDependencies": {
+    "ava": "^1.2.0"
   },
-
-
   "homepage": "https://github.com/rasenplanscher/plain-date#readme",
   "repository": {
     "type": "git",
