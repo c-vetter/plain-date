@@ -1,11 +1,13 @@
 {
   "name": "plain-date",
   "description": "A simple, light-weight model for date handling",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "rasenplanscher",
   "license": "MIT",
   "main": "index.js",
-  "files": [],
+  "files": [
+    "calculation.js"
+  ],
   "scripts": {
     "test": "ava"
   },
