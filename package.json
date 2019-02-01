@@ -11,12 +11,14 @@
   ],
   "scripts": {
     "build": "node ./build.js",
-    "prepublishOnly": "git diff --quiet",
+    "checkGit": "git diff --quiet",
+    "commitReadme": "git add README.md",
+    "prepublishOnly": "run-s checkGit test build",
     "test": "ava"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx run-s test build"
+      "pre-commit": "npx run-s test build commitReadme"
     }
   },
   "devDependencies": {

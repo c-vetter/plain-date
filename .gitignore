@@ -50,6 +50,8 @@ node_modules/
 # next.js build output
 .next
 
+# editor-specific files
+.vscode
 
 # build output
 index.mjs
