@@ -13,18 +13,25 @@
     "build": "node ./build.js",
     "checkGit": "git diff --quiet",
     "commitReadme": "git add README.md",
-    "prepublishOnly": "run-s checkGit test build",
+    "prepublishOnly": "run-s checkGit lint test build",
+    "lint": "eslint .",
     "test": "ava"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx run-s test build commitReadme"
+      "pre-commit": "npx run-s lint test build commitReadme"
     }
   },
   "devDependencies": {
     "ava": "^1.2.0",
     "browserize": "0.0.1",
     "documentation": "^9.1.1",
+    "eslint": "^5.12.1",
+    "eslint-plugin-ava": "^5.1.1",
+    "eslint-plugin-eslint-comments": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsdoc": "^3.15.1",
+    "eslint-plugin-unicorn": "^7.0.0",
     "husky": "^1.3.1",
     "npm-run-all": "^4.1.5"
   },

@@ -1,11 +1,11 @@
-const it = require('ava')
+const test = require('ava')
 
-const PlainDate = require('../index')
+const PlainDate = require('..')
 
 
 const date = new PlainDate(2018, 7, 8)
 
-it('returns a string representation according to the given format', t => {
+test('returns a string representation according to the given format', t => {
 	const format1 = 'YYMMDD'
 	const format2 = 'YYYYMMDD'
 	const format3 = 'DD.MM.YYYY'
@@ -17,6 +17,6 @@ it('returns a string representation according to the given format', t => {
 	t.is(date.formatString(format4), '07/08/18')
 })
 
-it('defaults to ISO format', t => {
+test('defaults to ISO format', t => {
 	t.is(date.formatString(), '2018-07-08')
 })

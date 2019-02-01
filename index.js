@@ -125,8 +125,7 @@ module.exports = class PlainDate {
 			this.month = dateObject.month
 			this.date = dateObject.date
 		} else if (typeof yearOrDate === 'string' && yearOrDate.length > 4) {
-			const [, foundYear, foundMonth, foundDate] =
-			yearOrDate.match(/^(\d{4})-(\d{1,2})(?:-(\d{1,2}))?/)
+			const [foundYear, foundMonth, foundDate] = yearOrDate.split('-')
 
 			this.year = parseInt(foundYear, 10)
 			this.month = parseInt(foundMonth, 10)

@@ -1,10 +1,10 @@
-const it = require('ava')
+const test = require('ava')
 
-const PlainDate = require('../../index')
+const PlainDate = require('../..')
 const { weekNumber } = require('../../calculation')
 
 
-it('returns the ISO week number of a given date', t => {
+test('returns the ISO week number of a given date', t => {
 	t.is(weekNumber(new PlainDate(2018, 1, 1)), 1)
 	t.is(weekNumber(new PlainDate(2018, 1, 2)), 1)
 	t.is(weekNumber(new PlainDate(2018, 1, 3)), 1)
@@ -23,7 +23,7 @@ it('returns the ISO week number of a given date', t => {
 	t.is(weekNumber(new PlainDate(2016, 1, 3)), 53)
 })
 
-it('returns the ISO week number of the first day in a given month', t => {
+test('returns the ISO week number of the first day in a given month', t => {
 	t.is(weekNumber(new PlainDate(2018, 1)), 1)
 	t.is(weekNumber(new PlainDate(2018, 2)), 5)
 	t.is(weekNumber(new PlainDate(2018, 3)), 9)

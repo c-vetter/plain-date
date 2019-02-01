@@ -1,12 +1,12 @@
-const it = require('ava')
+const test = require('ava')
 
-const PlainDate = require('../index')
+const PlainDate = require('..')
 
 
 const early = new PlainDate(2018, 1, 1)
 const late = new PlainDate(2019, 12, 31)
 
-it('tests correctly for equality', t => {
+test('tests correctly for equality', t => {
 	t.true(early === new PlainDate(early))
 	t.true(late === new PlainDate(late))
 
@@ -14,7 +14,7 @@ it('tests correctly for equality', t => {
 	t.false(late === early)
 })
 
-it('tests correctly for inequality', t => {
+test('tests correctly for inequality', t => {
 	t.true(early < late)
 	t.true(late > early)
 
