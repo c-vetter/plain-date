@@ -5,24 +5,98 @@
 
 const all = {}
 
+
 /**
  * @typedef {Object} PlainDate
  *
- * @property {number} year - Indicates whether the Courage component is present.
- * @property {number} month - Indicates whether the Power component is present.
- * @property {number} date - Indicates whether the Wisdom component is present.
+ * @description
+ * PlainDate objects represent calendar dates or months.
+ * They focus on ease of use and are very light in comparison
+ * with JavaScript's native Date type.
+ *
+ * They have a small set of properties, are immutable,
+ * and every date can only ever exist once.
+ *
+ * If you try to create a new PlainDate object with a date
+ * that has previously been created, you will receive that
+ * pre-existing PlainDate object.
+ *
+ * Additionally, PlainDate objects can be intuitively compared.
+ *
+ * PlainDate objects can be constructed with one to three parameters.
+ * Behaviour for unexpected inputs is not defined.
+ * In order to stay light-weight, there is no intelligent type checking.
+ *
+ * @property {number} year
+ * @property {number} month
+ * @property {number} date
  * @property {number} timestamp
+ *
+ * @example
+ * new PlainDate('2019-04-01') === new PlainDate('2019-04-01') // => true
+ *
+ * @example
+ * new PlainDate('2019-04-01') < new PlainDate('2019-04-01') // => false
+ *
+ * @example
+ * new PlainDate('2019-04-01') < new PlainDate('2019-04-11') // => true
+ *
+ * @example
+ * new PlainDate('2019-04-01') > new PlainDate('2019-04-11') // => false
+ *
+ */
+/**
+ * @constructor
+ *
+ * PlainDate/3_parameters
+ *
+ * @param {number|string} year
+ * @param {number|string} month
+ * @param {number|string} date
+ *
+ * @example
+ * new PlainDate(2019, 4, 1)
+ *
+ * @example
+ * new PlainDate('2019', '04', '01')
+ */
+/**
+ * @constructor
+ *
+ * PlainDate/2_parameters
+ *
+ * @param {number|string} year
+ * @param {number|string} month
+ *
+ * @example
+ * new PlainDate(2019, 4)
+ *
+ * @example
+ * new PlainDate('2019', '4')
+ */
+/**
+ * @constructor
+ *
+ * PlainDate/1_parameter
+ *
+ * @param {string|Date|PlainDate|{year: number, month: number, date: ?number}} fullDate
+ *
+ * @example
+ * new PlainDate('2019-04-01')
+ *
+ * @example
+ * new PlainDate('2019-04')
+ *
+ * @example
+ * new PlainDate(new Date(2019,3,1))
+ *
+ * @example
+ * new PlainDate({
+ *   year: 2019,
+ *   month: 4,
+ * })
  */
 module.exports = class PlainDate {
-	/**
-	 * @param {number|Date|PlainDate|{year: number, month: number, date: ?number}} yearOrDate -
-	 * if a `Date`, `PlainDate` (or similar), or ISO-string is given,
-	 * the other parameters are ignored.
-	 * @param {number} month
-	 * @param {number} date
-	 *
-	 * @returns {PlainDate}
-	 */
 	constructor (yearOrDate, month, date) {
 		if (yearOrDate instanceof PlainDate) {
 			return yearOrDate
@@ -81,7 +155,9 @@ module.exports = class PlainDate {
 	}
 
 	/**
-	 * @returns {string} - Represents the same day or month.
+	 * Generates the ISO string representation of this.
+	 *
+	 * @returns {string}
 	 */
 	toString () {
 		return this.timestamp.toString(10)
@@ -110,7 +186,10 @@ module.exports = class PlainDate {
 	}
 
 	/**
-	 * @returns {Date} - Represents the same day or month.
+	 * Creates a new equivalent `Date` object.
+	 * Multiple calls yield multiple distinct objects.
+	 *
+	 * @returns {Date}
 	 */
 	getComplexDate () {
 		return new Date(this.year, this.month - 1, this.date || 1)

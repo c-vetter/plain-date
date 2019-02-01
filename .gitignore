@@ -52,4 +52,4 @@ node_modules/
 
 
 # build output
-index.esm.js
+index.mjs
