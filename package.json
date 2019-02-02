@@ -1,7 +1,7 @@
 {
   "name": "plain-date",
   "description": "A simple, light-weight model for date handling",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "rasenplanscher",
   "license": "MIT",
   "main": "index.js",

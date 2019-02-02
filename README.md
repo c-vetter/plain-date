@@ -36,10 +36,10 @@ import PlainDate, { startOfMonth, weekNumber } from 'plain-date'
 -   [PlainDate](#plaindate)
     -   [Properties](#properties)
     -   [Examples](#examples)
-    -   [toString](#tostring)
-    -   [formatString](#formatstring)
-        -   [Parameters](#parameters)
     -   [getComplexDate](#getcomplexdate)
+    -   [toString](#tostring)
+        -   [Parameters](#parameters)
+    -   [valueOf](#valueof)
 -   [PlainDate/3_parameters](#plaindate3_parameters)
     -   [Parameters](#parameters-1)
     -   [Examples](#examples-1)
@@ -108,13 +108,14 @@ new PlainDate('2019-04-01') < new PlainDate('2019-04-11') // => true
 new PlainDate('2019-04-01') > new PlainDate('2019-04-11') // => false
 ```
 
+#### getComplexDate
+
+Creates a new equivalent `Date` object.
+Multiple calls yield multiple distinct objects.
+
+Returns **[Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)** 
+
 #### toString
-
-Generates the ISO string representation of this.
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-#### formatString
 
 Replaces each token in the given string by
 the appropriate string representation of the related data:
@@ -124,18 +125,19 @@ the appropriate string representation of the related data:
 -   MM: zero-padded two-digit month.
 -   DD: zero-padded two-digit date.
 
+Defaults to the ISO format.
+
 ##### Parameters
 
--   `format` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'YYYY-MM-DD'`)
+-   `format` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'YYYY-MM[-DD]'`)
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-#### getComplexDate
+#### valueOf
 
-Creates a new equivalent `Date` object.
-Multiple calls yield multiple distinct objects.
+Enables fast comparison via `<` and `>`.
 
-Returns **[Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)** 
+Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ### PlainDate/3_parameters
 

@@ -3,7 +3,12 @@
  * Exports the `PlainDate` class.
  */
 
-const all = {}
+/**
+ * @type {Object}
+ * This cache object makes direct comparisons possible `==` and
+ * can potentially save space by reuse of existing PlainDate objects.
+ */
+const cache = Object.create(null)
 
 
 /**
@@ -117,8 +122,8 @@ module.exports = class PlainDate {
 			/** @type {PlainDate} */
 			const dateObject = yearOrDate
 
-			if (all[dateObject.timestamp]) {
-				return all[dateObject.timestamp]
+			if (cache[dateObject.timestamp]) {
+				return cache[dateObject.timestamp]
 			}
 
 			this.year = dateObject.year
@@ -145,43 +150,12 @@ module.exports = class PlainDate {
 		(this.month * 100) +
 		(this.date || 0)
 
-		if (all[this.timestamp]) {
-			return all[this.timestamp]
+		if (cache[this.timestamp]) {
+			return cache[this.timestamp]
 		}
 
 		Object.freeze(this)
-		all[this.timestamp] = this
-	}
-
-	/**
-	 * Generates the ISO string representation of this.
-	 *
-	 * @returns {string}
-	 */
-	toString () {
-		return this.timestamp.toString(10)
-		.replace(/^(\d{4})(\d{2})(\d{2})$/, '$1-$2-$3')
-		.replace(/-00$/, '')
-	}
-
-	/**
-	 * Replaces each token in the given string by
-	 * the appropriate string representation of the related data:
-	 * + YYYY: full year-number.
-	 * + YY: last two digits of year.
-	 * + MM: zero-padded two-digit month.
-	 * + DD: zero-padded two-digit date.
-	 *
-	 * @param {string} format
-	 *
-	 * @returns {string}
-	 */
-	formatString (format = 'YYYY-MM-DD') {
-		return format
-		.replace('YYYY', this.year)
-		.replace('YY', padded(this.year))
-		.replace('MM', padded(this.month))
-		.replace('DD', padded(this.date))
+		cache[this.timestamp] = this
 	}
 
 	/**
@@ -193,6 +167,37 @@ module.exports = class PlainDate {
 	getComplexDate () {
 		return new Date(this.year, this.month - 1, this.date || 1)
 	}
+
+	/**
+	 * Replaces each token in the given string by
+	 * the appropriate string representation of the related data:
+	 * + YYYY: full year-number.
+	 * + YY: last two digits of year.
+	 * + MM: zero-padded two-digit month.
+	 * + DD: zero-padded two-digit date.
+	 *
+	 * Defaults to the ISO format.
+	 *
+	 * @param {string} [format='YYYY-MM[-DD]']
+	 *
+	 * @returns {string}
+	 */
+	toString (format = this.date ? 'YYYY-MM-DD' : 'YYYY-MM') {
+		return format
+		.replace('YYYY', this.year)
+		.replace('YY', padded(this.year))
+		.replace('MM', padded(this.month))
+		.replace('DD', padded(this.date))
+	}
+
+	/**
+	 * Enables fast comparison via `<` and `>`.
+	 *
+	 * @returns {number}
+	 */
+	valueOf () {
+		return this.timestamp
+	}
 }
 
 
@@ -202,10 +207,10 @@ module.exports = class PlainDate {
 /**
  * Zero-pads a number to 2 digits.
  *
- * @param {number} number
+ * @param {number} [number=0]
  *
  * @returns {string}
  */
-function padded (number) {
+function padded (number = 0) {
 	return `0${number}`.slice(-2)
 }
