@@ -1,8 +1,13 @@
 {
   "name": "plain-date",
   "description": "A simple, light-weight model for date handling",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "author": "rasenplanscher",
+  "contributors": [
+    {
+      "name": "Johannes Grossman"
+    }
+  ],
   "license": "MIT",
   "main": "index.js",
   "files": [
@@ -10,12 +15,14 @@
     "index.mjs"
   ],
   "scripts": {
-    "build": "node ./build.js",
+    "build": "run-s packCode updateReadme",
     "checkGit": "git diff --quiet",
     "commitReadme": "git add README.md",
     "prepublishOnly": "run-s checkGit lint test build",
     "lint": "eslint .",
-    "test": "ava"
+    "packCode": "browserize -n calculation",
+    "test": "ava",
+    "updateReadme": "documentation readme --document-exported --section API index.mjs"
   },
   "husky": {
     "hooks": {
@@ -24,14 +31,14 @@
   },
   "devDependencies": {
     "ava": "^1.2.0",
-    "browserize": "0.0.1",
+    "browserize": "^1.0.0",
     "documentation": "^9.1.1",
-    "eslint": "^5.12.1",
+    "eslint": "^5.13.0",
     "eslint-plugin-ava": "^5.1.1",
     "eslint-plugin-eslint-comments": "^3.0.1",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsdoc": "^3.15.1",
-    "eslint-plugin-unicorn": "^7.0.0",
+    "eslint-plugin-unicorn": "^7.1.0",
     "husky": "^1.3.1",
     "npm-run-all": "^4.1.5"
   },

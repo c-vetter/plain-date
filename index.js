@@ -5,7 +5,7 @@
 
 /**
  * @type {Object}
- * This cache object makes direct comparisons possible `==` and
+ * This cache object makes direct comparisons possible `==`/`===` and
  * can potentially save space by reuse of existing PlainDate objects.
  */
 const cache = Object.create(null)
