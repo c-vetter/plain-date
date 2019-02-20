@@ -164,8 +164,16 @@ module.exports = class PlainDate {
 	 *
 	 * @returns {Date}
 	 */
-	getComplexDate () {
+	getNativeDate () {
 		return new Date(this.year, this.month - 1, this.date || 1)
+	}
+
+	/**
+	 * @deprecated Use `getNativeDate` instead
+	 * @returns {Date}
+	 */
+	getComplexDate () {
+		return this.getNativeDate()
 	}
 
 	/**

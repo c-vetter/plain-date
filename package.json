@@ -1,7 +1,7 @@
 {
   "name": "plain-date",
   "description": "A simple, light-weight model for date handling",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "rasenplanscher",
   "contributors": [
     {

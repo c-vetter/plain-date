@@ -25,7 +25,7 @@ const lengthOfDay = 24 * 60 * 60 * 1000
  * @returns {number} Difference between both dates, in days.
  */
 function daysBetween (one, other) {
-	return Math.round((other.getComplexDate() - one.getComplexDate()) / lengthOfDay)
+	return Math.round((other.getNativeDate() - one.getNativeDate()) / lengthOfDay)
 }
 
 const daysPerWeek = 7
@@ -81,7 +81,7 @@ function endOfWeek (given, firstDayIndex) {
  * @returns {number} - Index of weekday, offset according to given index.
  */
 function weekday (given, firstDayIndex = 0) {
-	const rawDay = given.getComplexDate().getDay()
+	const rawDay = given.getNativeDate().getDay()
 	const shiftedDay = rawDay - firstDayIndex
 	const offsetDay = shiftedDay + daysPerWeek
 	const normalizedDay = offsetDay % daysPerWeek
@@ -99,7 +99,7 @@ function weekday (given, firstDayIndex = 0) {
  * @see https://stackoverflow.com/questions/6117814/get-week-of-year-in-javascript-like-in-php#6117889
  */
 function weekNumber (given) {
-	const date = given.getComplexDate()
+	const date = given.getNativeDate()
 
 	// Set to nearest Thursday: current date + 4 - current day number
 	// Make Sunday's day number 7

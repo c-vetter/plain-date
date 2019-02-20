@@ -36,6 +36,7 @@ import PlainDate, { startOfMonth, weekNumber } from 'plain-date'
 -   [PlainDate](#plaindate)
     -   [Properties](#properties)
     -   [Examples](#examples)
+    -   [getNativeDate](#getnativedate)
     -   [getComplexDate](#getcomplexdate)
     -   [toString](#tostring)
         -   [Parameters](#parameters)
@@ -108,12 +109,21 @@ new PlainDate('2019-04-01') < new PlainDate('2019-04-11') // => true
 new PlainDate('2019-04-01') > new PlainDate('2019-04-11') // => false
 ```
 
-#### getComplexDate
+#### getNativeDate
 
 Creates a new equivalent `Date` object.
 Multiple calls yield multiple distinct objects.
 
 Returns **[Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)** 
+
+#### getComplexDate
+
+Returns **[Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)** 
+
+**Meta**
+
+-   **deprecated**: Use `getNativeDate` instead
+
 
 #### toString
 
